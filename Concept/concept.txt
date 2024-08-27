@@ -1,0 +1,7 @@
+base de datos predefinida,solo leer up´date y delete(solo info en ese id, pero mantener el espacio con datos en blanco)
+video guia numero 442
+$bd por ahora es un texto 
+gulp="npm run gulp"
+//linkear con repo
+//incluir link a font de google
+//hacer vistas y chequear si anda todo

@@ -1,0 +1,84 @@
+.horarios__titulo{
+    display: flex;
+    justify-content: space-around;
+    margin:   2rem 0;
+    p{
+        font-size: 5rem;
+        padding: 0%  ;
+        margin: 0%;
+        @include tablet{
+           
+                font-size: 3rem;
+             
+        }
+    }
+}
+
+.horarios__fila {
+    display: grid;
+    grid-template-columns: auto 1fr; /* El primer elemento (número) tiene tamaño automático, el resto ocupa el espacio restante */
+    grid-template-rows: 1fr 1fr; /* Dos filas de igual tamaño para los alumnos */
+    align-items: stretch;
+}
+
+.horarios__numero {
+   
+    color: $blanco;
+    grid-row: span 2; /* Ocupa ambas filas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem; /* Ajusta según sea necesario */
+    background-color: $grisOscuro; /* Color de fondo opcional */
+    padding: 0 5rem ;
+    margin: 0;
+   
+
+}
+.horario__alumno {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+     
+    border-bottom: 1px solid #ccc; /* Bordes opcionales */
+    a{
+        list-style: none;
+        color: $negro;
+    }
+    p{
+        padding: 0 5rem;
+        text-align: center;
+         @include tablet{
+            grid-column: 1 / -1;/* Espacio entre el <p> y los botones */
+         }
+    }
+    .presente{
+        @include tablet{
+            grid-column: 2 / 3; 
+             
+        }
+    }
+    @include tablet{
+         
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+            gap: 1rem; /* Espacio entre columnas */
+        
+      
+    }
+}
+
+.horario__borrar{
+    border: none;
+    background-color: $gris;
+    grid-column: 3 / 4; 
+    svg{
+
+        width: 5rem;
+    }
+} 
+.contenedor{
+    @include tablet{
+    margin: 0;
+    }
+}

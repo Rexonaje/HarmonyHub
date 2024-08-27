@@ -1,0 +1,26 @@
+{
+  "name": "teachflow",
+  "version": "1.0.0",
+  "description": "student manager for teachers",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "author": "brambilla carlo nicolas",
+  "license": "ISC",
+  "dependencies": {
+    "cssnano": "^7.0.5",
+    "gulp": "^5.0.0",
+    "gulp-autoprefixer": "^9.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-postcss": "^10.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser-js": "^5.2.2",
+    "sass": "^1.77.8",
+    "teachflow": "file:"
+  }
+}

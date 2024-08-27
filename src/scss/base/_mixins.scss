@@ -1,0 +1,61 @@
+/** Media Queries **/
+@mixin telefono {
+    @media (min-width: #{$telefono}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: #{$tablet}) {
+        @content;
+    }
+}
+  
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+@mixin grid($columnas , $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+   
+    grid-template-columns: repeat($columnas, minmax(0, 1fr));  
+} /*
+@mixin boton($bgcolor,$display){   
+    background-color: $bgcolor;
+    color:$blanco;
+    font-weight: bold; 
+    text-decoration: none;
+    padding: .5rem 3rem;
+    text-align: center;
+    margin-top:calc($separacion / 2);
+    display: $display;
+    margin: .5rem;
+    border: none;
+    &:hover{
+        background-color: darken($bgcolor, 4);
+        cursor: pointer;
+    }
+}*/
+@mixin boton($bgcolor, $display) {
+    background-color: $bgcolor;
+    color: #ffffff; /* Blanco para el texto */
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.5rem 3rem;
+    text-align: center;
+    margin-top: calc($separacion / 2);
+    display: $display;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 4px; /* Añadido para un borde más moderno */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para un efecto más moderno */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+
+    &:hover {
+        background-color: darken($bgcolor, 4%);
+        cursor: pointer;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al pasar el ratón */
+    }
+}

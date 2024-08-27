@@ -1,0 +1,60 @@
+/*header{
+    background-color: $grisOscuro;
+    display: flex;
+    flex-direction: column;
+    
+    @include tablet{
+    }
+    h1{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 1rem;
+        padding-left:  2rem  ;
+        font-weight: 800;
+        letter-spacing: 0.5rem;
+        
+    }   
+    h2{
+        color: $blanco;
+    }
+}*/
+/*
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f4f4;  
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #1ABC9C;  
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #34495E;  
+    margin-top: 10px;
+}*/
+header {
+    text-align: center;
+    padding: 20px;
+    background-color:$grisOscuro;
+    color:$blanco;
+    display: flex;
+    justify-content: space-between;
+    &{
+        .darkButton{
+            width:5rem ;
+            height: 5rem;
+           
+        }
+    }
+   
+}
+
+
+.subtitulo {
+    font-size: 1.5rem;
+    margin-top: 5px;
+    letter-spacing: 1px;    
+}

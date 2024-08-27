@@ -1,0 +1,26 @@
+.dark-mode{
+    background-color: darken($grisOscuro, $amount: 10);
+    &{
+        p,a,blockquote,tr,li{
+            color: white;
+        }
+        h1,h2,h3,h4{
+            color: gray;
+        }
+        .horarios__numero{
+            color: gray;
+        }
+        .horario__alumno a {
+             color: $blanco;
+        }
+        .horario__borrar{
+            background-color: darken($grisOscuro, $amount: 10); 
+        }
+        .login{
+            background-color: $grisOscuro;
+        }
+        #añadir-cancion textarea{
+            background-color: $grisOscuro;
+        }
+    }
+}

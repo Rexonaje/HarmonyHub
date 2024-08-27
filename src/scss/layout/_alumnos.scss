@@ -1,0 +1,53 @@
+.nombre{
+    justify-content: space-between;
+    h1{
+        font-weight:  500;
+        font-size: 5rem;
+        @include tablet{
+            font-size: 3rem;
+        }
+    }
+
+}
+.canciones{
+    &{
+        h1{
+            text-align: left;
+            margin-left:3rem;
+            font-weight: bold;
+            font-size: 3rem;
+            @include tablet{
+                font-size:2rem;
+            }
+           }
+           ul{
+            list-style: none;
+            li{
+                border-bottom: 1px solid $grisOscuro;
+                margin:1rem;
+            }
+           }
+           p{
+            margin: 4rem;
+           }
+           #añadir-cancion{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           }
+           textarea{
+            background-color: $gris;
+            color: $blanco;
+            border: .1rem solid $azul;
+            width: 50rem;
+            height: 4rem;
+            margin: 1rem;
+            text-align: center;
+            padding: .5rem;
+           }
+    }
+  
+   border: 0.3rem solid $grisOscuro;
+   border-radius: 5rem;
+   margin: 1rem;
+}
