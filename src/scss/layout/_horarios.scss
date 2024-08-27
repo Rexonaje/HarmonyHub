@@ -40,7 +40,7 @@
     align-items: center;
     justify-content: space-between;
      
-    border-bottom: 1px solid #ccc; /* Bordes opcionales */
+    border-bottom: 1px solid $grisOscuro; /* Bordes opcionales */
     a{
         list-style: none;
         color: $negro;
