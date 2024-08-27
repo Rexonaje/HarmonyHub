@@ -79,7 +79,7 @@
         $resultado=self::$db->query($query);
         if($resultado){
             //redireccionar al user para evitar entradas duplicadas
-            $this->borrarImagen();
+           /* $this->borrarImagen();*/
             header('location: /admin?resultado=3'); 
         }
     }
@@ -91,7 +91,7 @@
         }
         return $sanitizado;
     }
-    public function setImage($image){
+   /* public function setImage($image){
         //eliminar archivo previo
        $this->borrarImagen();
 
@@ -106,7 +106,8 @@
                 unlink(CARPETA_IMAGENES . $this->imagen);//entonces la elimina
             }
         }
-    }
+    }*/
+
     //validar
     public static function getErrores(){
         return static::$errores;

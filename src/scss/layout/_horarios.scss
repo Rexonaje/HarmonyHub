@@ -58,6 +58,10 @@
              
         }
     }
+    .presente:disabled{
+        background-color: $grisOscuro;
+        color: darken($color: $gris, $amount: 3)  ;
+    }
     @include tablet{
          
             display: grid;

@@ -9,7 +9,7 @@
 <body>
     <header>
         <div>
-            <h1>HarmonyHub: </h1>
+        <a href="/"><h1>HarmonyHub: </h1></a>
             <h2 class="subtitulo">Gestión Musical de Alumnos </h2>
         </div>
         <p  class="dark-mode-btn">
