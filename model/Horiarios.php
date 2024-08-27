@@ -1,5 +1,5 @@
 <?php
  namespace Model;
- class Horarios{
+ class Horarios  extends ActiveRecord{
     
  }
