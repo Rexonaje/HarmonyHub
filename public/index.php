@@ -1,11 +1,17 @@
 <?php 
 include_once __DIR__ . '/../includes/app.php';
 
+use Controllers\AlumnosController;
 use MVC\Router;
-use Controllers\HorariosController;
+use Controllers\AsignacionesController;
 
 $router =new Router();
-$router->get('/horarios',[HorariosController::class,'horarios']);
-$router->get('/alumnos',[HorariosController::class,'alumnos']);
-$router->get('/',[HorariosController::class,'login']);
-$router->comprobarRutas();
+//get
+$router->get('/asignaciones',[AsignacionesController::class,'asignaciones']);
+$router->get('/alumnos',[AlumnosController::class,'alumnos']);
+$router->get('/',[AsignacionesController::class,'login']);
+//post
+$router->post('/asignaciones',[AsignacionesController::class,'asignaciones']);
+$router->post('/alumnos',[AlumnosController::class,'alumnos']);
+$router->post('/',[AsignacionesController::class,'login']);
+$router->comprobarRutas();     

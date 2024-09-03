@@ -11,7 +11,7 @@
     //errores
     protected static $errores=[];
 
-
+  
     
     
    
@@ -132,11 +132,26 @@
 
 
     //buscar un registro por su id
-    public static function find($id){
+    public static function find($id ){
         $query="SELECT * From ". static::$tabla ." WHERE id={$id}";
         $resultado=self::consultarSql($query);
         return array_shift($resultado);//arrayshift devuelve el primer elemento del arreglo
     }
+    public static function findByColumn($column, $value) {
+        // Verificar si el valor es un número
+        if (is_numeric($value)) {
+            $query = "SELECT * FROM " . static::$tabla . " WHERE {$column}= {$value}";
+            
+        } else {
+            // Si no es un número, envolver el valor entre comillas
+            $query = "SELECT * FROM " . static::$tabla . " WHERE {$column}= '{$value}'";
+        }
+    
+        $resultado = self::consultarSql($query);
+       //debugear($resultado,false);
+        return $resultado; // array_shift devuelve el primer elemento del arreglo
+    }
+    
 
     public static function consultarSql($query){
         //consultar base
@@ -149,6 +164,7 @@
         //liberar memoria 
         $resultado->free();
         //retornar resultado
+       // debugear($array);
         return $array;
     }
     public static function crearObj($registro){

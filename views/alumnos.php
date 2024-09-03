@@ -1,24 +1,36 @@
 <main>
-
-    <div class="contenedor flex-row-rev nombre">
-        <a href="/horarios" class="boton-verde">Volver</a>
-        <h1>Nombre y apellido</h1>
-    </div>
+    <!--var en la url que dice el id del alumno -->
+     
+    <p> <?php //debugear($alumno,false) ;?></p>
+     <!--?php debugear($alumnos);? --> 
+    <form   method="post">
+        <div class="contenedor flex-row-rev nombre">
+            <a href="/asignaciones" class="boton-verde">Volver</a>
+            <input type="text" placeholder="Nombre y apellido" value=" <?php echo $alumno->nombre;  ?> ">
+            <button type="submit" class=" boton-azul">guardar</button>
+        </div>
+        <div class="comentarios canciones">
+            <h1>Comentarios</h1>
+            <p contenteditable ><?php echo $alumno->comentarios; ?></p>
+        </div><!--comentarios -->
+    </form>
     <div class= "canciones">
         <h1>Repertorio Actual</h1>
-        <ul>
-            <li id="añadir-cancion">
+        <form   method="post">
+            <div id="añadir-cancion">
                 <textarea > </textarea>
-                <button class="boton-azul">+</button>
-            </li>
-            <li>tema uno </li>
-            <li>tema dos </li>
-          
-        <!-- boton de añadir temas o reemplazar lista con un div/p que funcione como textarea para almacenar texto-->
+                <button type="submit" class="boton-azul">+</button>
+            </div>
+        </form>
+        <?php if (!empty($canciones)): ?>
+        <ul>
+            <?php foreach ($canciones as $cancion): ?>
+                <li><?php echo $cancion->titulo; ?></li>
+            <?php endforeach; ?>
         </ul>
-    </div>
-    <div class="comentarios canciones">
-        <h1>Comentarios</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum excepturi earum cumque? Ut nulla eligendi, eveniet cum natus suscipit iste nostrum excepturi a magnam! Consequuntur nam nobis repellendus accusantium laboriosam!</p>
-    </div>
+        <?php else: ?>
+            <p>No hay canciones disponibles para este alumno.</p>
+        <?php endif; ?>
+
+    </div><!--canciones-->
 </main>

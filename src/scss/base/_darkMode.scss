@@ -22,5 +22,9 @@
         #añadir-cancion textarea{
             background-color: $grisOscuro;
         }
+        .nombre input{
+            background-color: darken($grisOscuro, $amount: 10);
+            color: gray;
+        }
     }
 }

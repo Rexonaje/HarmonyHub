@@ -6,7 +6,7 @@
         "psr-4": {
            "MVC\\" :"./",
            "Controllers\\" :"./controllers",
-           "Model\\" :"./models"
+           "Model\\" :"./model"
         }
     },
     "authors": [
@@ -15,5 +15,7 @@
             "email": "nbrambilla3@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
 }

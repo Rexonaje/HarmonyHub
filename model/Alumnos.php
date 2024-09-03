@@ -1,19 +1,20 @@
 <?php
+
  namespace Model;
  class Alumnos extends ActiveRecord{
     protected static $tabla='alumnos';
-    protected static $columnasBD=['alumnos_id','nombre','asignaciones_asignaciones_id','comentarios'];
+    protected static $columnasBD=['alumnos_id','nombre','comentarios'];
 
     public $alumnos_id;
     public $nombre;
-    //public $asignaciones_asignaciones_id;
     public $comentarios;
+    public $canciones=[];//inyectar en el array el valor de titulo en la tabla canciones
 
     public function __construct($args=[])
     {
-        $this->alumnos_id=$args['alumnos_id'];
-        $this->nombre=$args['nombre'];
-        //$this->asignaciones_asignaciones_id=$args['asignaciones_asignaciones_id'];
-        $this->comentarios=$args['comentarios'];
+        $this->alumnos_id=$args['alumnos_id']?? null;
+        $this->nombre=$args['nombre']?? 'Añadir Nombre';
+         
+        $this->comentarios=$args['comentarios'] ?? 'Añadir Comentario';
     }
  }
