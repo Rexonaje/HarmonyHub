@@ -1,17 +1,22 @@
 <main>
-    <!--var en la url que dice el id del alumno -->
-     
-    <p> <?php //debugear($alumno,false) ;?></p>
-     <!--?php debugear($alumnos);? --> 
+    <!-- BORRAR var en la url que dice el id del alumno -->
+ 
     <form   method="post">
         <div class="contenedor flex-row-rev nombre">
             <a href="/asignaciones" class="boton-verde">Volver</a>
-            <input type="text" placeholder="Nombre y apellido" value=" <?php echo $alumno->nombre;  ?> ">
+            <input type="text" placeholder="Nombre y apellido"
+             value=" <?php if( $_GET['alumnoId']!="nuevo"){ echo $alumno->nombre; }else{
+                echo "Nuevo alumno";
+             } ?> ">
             <button type="submit" class=" boton-azul">guardar</button>
         </div>
         <div class="comentarios canciones">
             <h1>Comentarios</h1>
-            <p contenteditable ><?php echo $alumno->comentarios; ?></p>
+            <p contenteditable >
+            <?php if(!$alumnoId="nuevo"){ echo $alumno->comentarios; }else{
+                echo "Añadir Comentario";
+             } ?> 
+            </p>
         </div><!--comentarios -->
     </form>
     <div class= "canciones">

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     darkMode();
-    cambiarDias();
+    //cambiarDias();
     presentismo();
     noPresentismo();
 });
@@ -31,8 +31,8 @@ function darkMode() {
     } else {
         console.error("No se encontró el botón para activar el modo oscuro.");
     }
-}/*
-function cambiarDias(){
+}
+/*function cambiarDias(){
    
     const btn_dia_back=document.querySelector('#btn-dia-back');
     const btn_dia_next=document.querySelector('#btn-dia-next');
@@ -61,18 +61,18 @@ function cambiarDias(){
     });
     btn_dia_back.addEventListener('click',function(){
         
-       i--;
+       i--; 
     
        if (i <0) {//si indice del array baja de 0 le asigna 5 a dicho indice
         i = 5;
         }
-        h1.textContent=$dias[i];//inyecta valor de array en indice al titulo
+        h1.textContent=$dias[i];//inyecta valor de array en indice al titulo 
             // Guardar el valor actualizado de 'i' en el localStorage
             localStorage.setItem('diaIndex', i);
     });
 }*/
 function presentismo(){
-    const btn =document.querySelectorAll('.presente');
+    const btn =document.querySelectorAll('.presente');                                              
     btn.forEach(btn => {
         // Verificar si el botón tiene un id y es un elemento válido
         if (btn.id) {

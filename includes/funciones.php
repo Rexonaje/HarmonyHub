@@ -10,8 +10,8 @@
 }
 
 if(!function_exists('debugear')){
-    function debugear( $variable,$exit=true){
-        echo '<pre>';
+    function debugear( $variable,$exit=true,$color="ffffff"){
+        echo '<pre style="color:#'.$color.';">';
             var_dump($variable);
         echo '</pre>';
     if($exit){
