@@ -7,7 +7,7 @@
         font-size: 5rem;
         text-align: center;
         color:$grisOscuro;
-        font-weight: 700;
+        font-weight: 500;
         @include tablet{
             font-size: 3rem;
         }
@@ -18,8 +18,40 @@
    } 
 
 } 
+#comentarios{
+    border: none;
+    background-color: $grisOscuro;
+    font-size: 4rem;
+    text-align: left;
+    color:$gris;
+
+    margin: 0 10% ;
+    //font-weight: 500;
+    width: 100rem;
+    height: 30rem;
+    @include tablet{
+        font-size: 3rem;
+        width: 32rem;
+        height: 40rem;
+    }
+}
 .canciones{ 
     &{
+        input{
+
+            background-color: #1a1a1a;
+            color:$blanco;
+            border: none;
+            margin:5rem;
+            padding:  2rem;
+            width: 60rem;
+            height: 10rem;
+            @include tablet{
+
+                width: 20rem;
+                height: 20rem;
+            }
+        }
         h1{
             text-align: left;
             margin-left:3rem;

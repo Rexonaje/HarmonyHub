@@ -8,10 +8,14 @@ use Controllers\AsignacionesController;
 $router =new Router();
 //get
 $router->get('/asignaciones',[AsignacionesController::class,'asignaciones']);
-$router->get('/alumnos',[AlumnosController::class,'alumnos']);
+$router->get('/alumnos/alumno',[AlumnosController::class,'alumnos']);
+$router->get('/alumnos/crear',[AlumnosController::class,'AgregarAlumno']);
+$router->get('/alumnos/canciones',[AlumnosController::class,'AgregarCancion']);
 $router->get('/',[AsignacionesController::class,'login']);
 //post
 $router->post('/asignaciones',[AsignacionesController::class,'asignaciones']);
-$router->post('/alumnos',[AlumnosController::class,'alumnos']);
+$router->post('/alumnos/alumno',[AlumnosController::class,'alumnos']);
+$router->post('/alumnos/crear',[AlumnosController::class,'AgregarAlumno']);
+$router->post('/alumnos/canciones',[AlumnosController::class,'AgregarCancion']);
 $router->post('/',[AsignacionesController::class,'login']);
 $router->comprobarRutas();     

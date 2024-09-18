@@ -1,11 +1,4 @@
 <?php
-/*
-$bd=mysqli_connect('localhost','root','root','harmonyhub_db_crud');
-//$bd="conected";
-if(!$bd){
-    echo "error de conexion con bd";
-    exit;
-}*/
 
 
 function conectarDB() : mysqli{

@@ -3,14 +3,14 @@
     <form  method="post">
         <h2>Dia: <?php echo $dia;?></h2>
         <div class="horarios__titulo">
-            <select id="opciones" name="opciones">
-            <option value=<?php echo $dia;?> selected hidden >Selecione</option>
-                <option value="Lunes">Lunes</option>
-                <option value="Martes">Martes </option>
-                <option value="Miercoles">Miercoles </option>
-                <option value="Jueves">Jueves </option>
-                <option value="Viernes">Viernes </option>
-                <option value="Sabado">Sabado </option>
+            <select id="opciones" name="dias">
+            <option value=<?php echo $dia;?> selected hidden ><?php echo $dia;?></option>
+                <option value="lunes">Lunes</option>
+                <option value="martes">Martes </option>
+                <option value="miercoles">Miercoles </option>
+                <option value="jueves">Jueves </option>
+                <option value="viernes">Viernes </option>
+                <option value="sabado">Sabado </option>
             </select>
             <button type="submit" id="btn-dia" class="boton boton-azul">Seleccionar dia</button>
         </div>
@@ -20,21 +20,21 @@
     <?php 
     // Define the number of groups and rows per group
     $grupos = 5;
-    $rowsPerGroup = 2;
+    $rowsPorGroup = 2;
+    //debugear($alumnos,false);
     ?>
 
 <?php for ($grupo = 1; $grupo <= $grupos; $grupo++): ?>
     <div class="horarios__grupo">
         <p class="horarios__numero">Horario <?php echo $grupo; ?></p>
-        <?php for ($row = 1; $row <= $rowsPerGroup; $row++): ?>
+        <?php for ($row = 1; $row <= $rowsPorGroup; $row++): ?>
             <?php 
             $asignacionFound = false;
+            $h=strval(($grupo - 1) * $rowsPorGroup + $row);
             foreach ($asignaciones as $asginacion) {
-                $h=strval(($grupo - 1) * $rowsPerGroup + $row);
-                
                 if ($h == $asginacion->horario) {
                     $asignacionFound = true;
-                    $alumnoId = $asginacion->alumno_id;
+                    $alumno_id = $asginacion->alumno_id;
                 
                     break;
                 }
@@ -44,10 +44,10 @@
                 <div class="horario__alumno">
                     <p>
                         <?php if ($asignacionFound): ?>
-                            <a href="/alumnos?alumnoId=<?php echo $alumnoId; ?>&horario=<?php echo $h; ?>&dia=<?php echo $dia; ?>">
+                            <a href="/alumnos/alumno?alumno_id=<?php echo $alumno_id; ?>&horario=<?php echo $h; ?>&dia=<?php echo $dia; ?>">
                                 <?php 
                                 foreach ($alumnos as $alumno) {
-                                    if ($alumno->alumnos_id === $alumnoId) {
+                                    if (intval($alumno->id) === intval($alumno_id)) {
                                         echo $alumno->nombre;
                                         break;
                                     }
@@ -55,7 +55,7 @@
                                 ?>
                             </a>
                         <?php else: ?>
-                            <a href="/alumnos?alumnoId=nuevo&horario=<?php echo $h; ?>&dia=<?php echo $dia; ?>">Libre</a>
+                            <a href="/alumnos/crear?alumno_id=nuevo&horario=<?php echo $h; ?>&dia=<?php echo $dia; ?>">Libre</a>
                                 
                         <?php endif; ?>
                     </p>

@@ -19,9 +19,9 @@
 
 .horarios__fila {
     display: grid;
-    grid-template-columns: auto 1fr; /* El primer elemento (número) tiene tamaño automático, el resto ocupa el espacio restante */
-    grid-template-rows: 1fr 1fr; /* Dos filas de igual tamaño para los alumnos */
-    align-items: stretch;
+    /*grid-template-columns: auto 1fr; /* El primer elemento (número) tiene tamaño automático, el resto ocupa el espacio restante */
+    grid-template-rows: 1fr 1fr; /* Dos filas de igual tamaño para los alumnos 
+    align-items: stretch;*/
 }
 
 .horarios__numero {

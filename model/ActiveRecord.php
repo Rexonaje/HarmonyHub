@@ -19,17 +19,18 @@
         self::$db=$database;
     }
 
-    public function guardar(){
+    public function guardar($return,$link='/asignaciones'){
+         
         if(!is_null($this->id)){
             //actualizando
-            $this->actualizar();
+            $this->actualizar($link);
         }
         else{
             //creando
-            $this->crear();
+            $this->crear($return,$link);
         }
     }
-    public function crear(){
+    public function crear($return,$link){
         $atributos=$this->sanitizado();
  
         $query="INSERT INTO " . static::$tabla ." (";
@@ -43,11 +44,14 @@
 
         $resultado=self::$db->query($query);
         if($resultado){
-            //redireccionar al user para evitar entradas duplicadas
-            header('location:  /admin?resultado=1'); 
+            if($return){
+                //redireccionar al user para evitar entradas duplicadas
+
+                header('location:'.$link .'?resultado=1'); 
+            }
             }
     }
-    public function actualizar(){
+    public function actualizar($link){
         $atributos= $this->sanitizado();
         $valores=[];//va a memoria y une atributos con valores
                                //key  y valores del arreglo
@@ -62,7 +66,7 @@
         $resultado =self::$db->query($query);
         if($resultado){
             //redireccionar al user para evitar entradas duplicadas
-            header('location: /admin?resultado=2'); 
+            header('location: '. $link .'?resultado=2'); 
           }
     }
     public function atributos(){
