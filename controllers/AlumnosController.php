@@ -17,6 +17,14 @@ use MVC\Router;//maneja tabla alumnos y canciones
             $alumnos =Alumnos::findByColumn('id', $alumnoId);
             $alumno =array_shift($alumnos) ;
 
+            if($_SERVER['REQUEST_METHOD']==='POST'){
+                // tomar value de nombre y comentario
+                $alumno->nombre=$_POST['alumno']['nombre'];
+                $alumno->comentarios=$_POST['alumno']['comentarios'];
+                 
+                $alumno->guardar(true,'/asignaciones');
+              
+            }
            
 
             $router->render('alumnos/alumno',[
@@ -31,8 +39,11 @@ use MVC\Router;//maneja tabla alumnos y canciones
                 $cancion=new Canciones($_POST['cancion']);
                 $cancion->guardar(true,);
             }
-
-            $router->render('alumnos/canciones',[]);
+            $alumnoId=$_GET['alumno_id'];
+            $alumno =Alumnos::findByColumn('id', $alumnoId);
+            $router->render('alumnos/canciones',[
+                'alumnoNombre'=>$alumno
+            ]);
         }
         public static function AgregarAlumno(Router $router){
             $alumno=new Alumnos();
@@ -66,11 +77,27 @@ use MVC\Router;//maneja tabla alumnos y canciones
             //TODO enviar a la base
            
         }
-        public static function EliminarAlumno(Router $router){
+        public static function borrarAlumno(Router $router){
             //TODO obtener alumno Id
-            //TODO borrar de la tabla alumnos where AlumnoID
-            //TODO borrar de la tabla asignaciones where AlumnoID
-           
+            if($_SERVER['REQUEST_METHOD']==='POST'):
+                $alumnoId=$_GET['alumno_id'];
+                    
+                $canciones=Canciones::findByColumn('alumno_id',$alumnoId);
+                for($i=0;$i<=count($canciones);$i++){
+
+                    $canciones[$i]->eliminar(false);
+                }
+                
+                $asignacion=Asignaciones::findByColumn('alumno_id',$alumnoId);
+                $asignacion[0]->eliminar(false);
+            
+
+
+                $alumno =Alumnos::findByColumn('id', $alumnoId);
+                $alumno[0]->eliminar();
+            endif;
+             
+           $router->render('alumnos/borrarAlumno',[]);
         }
     }
     ?>

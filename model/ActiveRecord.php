@@ -23,7 +23,7 @@
          
         if(!is_null($this->id)){
             //actualizando
-            $this->actualizar($link);
+            $this->actualizar($return,$link);
         }
         else{
             //creando
@@ -51,7 +51,7 @@
             }
             }
     }
-    public function actualizar($link){
+    public function actualizar($return,$link){
         $atributos= $this->sanitizado();
         $valores=[];//va a memoria y une atributos con valores
                                //key  y valores del arreglo
@@ -65,8 +65,10 @@
 
         $resultado =self::$db->query($query);
         if($resultado){
+            if($return):
             //redireccionar al user para evitar entradas duplicadas
-            header('location: '. $link .'?resultado=2'); 
+            header('location: '. $link .'?resultado=2');
+            endif; 
           }
     }
     public function atributos(){
@@ -77,14 +79,16 @@
         }
       return $atributos;
     }
-    public function eliminar(){
+    public function eliminar($return=true){
         $query="DELETE FROM ". static::$tabla . " WHERE id= ". self::$db->escape_string($this->id) . " LIMIT 1";
        
         $resultado=self::$db->query($query);
         if($resultado){
+            if($return):
             //redireccionar al user para evitar entradas duplicadas
            /* $this->borrarImagen();*/
-            header('location: /admin?resultado=3'); 
+                header('location: /asignaciones?resultado=3'); 
+            endif;
         }
     }
     public function sanitizado(){

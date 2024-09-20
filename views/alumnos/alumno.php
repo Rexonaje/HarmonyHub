@@ -14,12 +14,12 @@
         </div> 
         <div class="comentarios canciones">
             <h1>Comentarios</h1>
-            <input 
+            <textarea 
               type="text"
-              value="<?php echo $alumno->comentarios;?>"
+             
              id="comentarios" 
              name="alumno[comentarios]" 
-            >
+            ><?php echo $alumno->comentarios;?></textarea>
         </div><!--comentarios -->
     </form>
     <div class= "canciones">

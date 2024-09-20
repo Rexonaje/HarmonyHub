@@ -21,7 +21,7 @@
 #comentarios{
     border: none;
     background-color: $grisOscuro;
-    font-size: 4rem;
+    font-size: 3rem;
     text-align: left;
     color:$gris;
 
@@ -46,6 +46,7 @@
             padding:  2rem;
             width: 60rem;
             height: 10rem;
+        
             @include tablet{
 
                 width: 20rem;
@@ -71,11 +72,6 @@
            p{
             margin: 4rem;
            }
-           #añadir-cancion{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-           }
            textarea{
             background-color: $gris;
             color: $blanco;
@@ -92,3 +88,15 @@
    border-radius: 5rem;
    margin: 1rem;
 }
+#añadir-cancion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    @include tablet{
+        flex-direction: column;
+    }
+   }
+   .canciones-label{
+        margin-left: 2rem  ;
+ }

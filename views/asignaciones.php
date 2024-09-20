@@ -60,9 +60,9 @@
                         <?php endif; ?>
                     </p>
                     <button id=<?php echo $grupo . "." .$row; ?> class="presente boton-verde">Presente</button>
-                    <button class="horario__borrar">
+                    <a href="/alumnos/borrarAlumno?alumno_id=<?php echo $alumno_id; ?>&horario=<?php echo $h; ?>&dia=<?php echo $dia; ?>" class="horario__borrar">
                         <?php @includirTemplate("deleteButton"); ?>
-                    </button>
+                    </a>
                 </div><!--horario alumno -->
                 <br>
             </div><!--horario fila -->
