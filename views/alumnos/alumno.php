@@ -1,14 +1,21 @@
 <main>
     
     <form   method="post">
+        <?php if (!empty($mensaje)): ?>
+                    <div class=" contenedor mensaje-error">
+                        <p> <?php echo $mensaje; ?></p>
+                    </div>
+                <?php endif; ?>
         <div class="contenedor flex-row-rev nombre">
-            <a href="/asignaciones" class="boton-verde">Volver</a>
+        
+            </form>
+            <a href="/asignaciones?dia=<?php echo $dia; ?>"  class="boton-verde">Volver</a>
             <input
               type="text"
               placeholder="Nombre y apellido"
               value=" <?php echo $alumno->nombre; ?> "
-             id="nombre"
-             name="alumno[nombre]"
+              id="nombre"
+              name="alumno[nombre]"
              >
             <button type="submit" class=" boton-azul">guardar</button>
         </div> 

@@ -8,8 +8,14 @@ use Model\Alumnos;
 //maneja  asignaciones
 class AsignacionesController {
     public static function asignaciones(Router $router ){
-            
-            $dia="Lunes";
+       
+            $dia="Lunes"; 
+
+            // Toma el valor del día desde la URL si está presente
+            if (isset($_GET['dia'])) {
+                $dia = $_GET['dia'];
+            }
+
             $alumnos=[];
           
              //toma el  value del titulo para filtrar asignacion con metodo post

@@ -10,7 +10,8 @@ use MVC\Router;//maneja tabla alumnos y canciones
         public static function alumnos(Router $router ){
          //   $alumnos=Alumnos::all();
             $alumnoId=$_GET['alumno_id'];
-             
+            $dia = $_GET['dia']; 
+            $mensaje='';
             //TODO mostrar canciones, nombre y comentario filtradas por id de alumno
             $canciones =Canciones::findByColumn('alumno_id', $alumnoId);
             //debugear($canciones,false);
@@ -19,74 +20,128 @@ use MVC\Router;//maneja tabla alumnos y canciones
 
             if($_SERVER['REQUEST_METHOD']==='POST'){
                 // tomar value de nombre y comentario
-                $alumno->nombre=$_POST['alumno']['nombre'];
-                $alumno->comentarios=$_POST['alumno']['comentarios'];
+                $dia = $_GET['dia']; 
+                $alumno->nombre=trim($_POST['alumno']['nombre']);
+                if(empty($alumno->nombre)){
+                    $mensaje="nombre vacio";
+                }else{
+
+                    $alumno->comentarios=$_POST['alumno']['comentarios'];
+                    $alumno->guardar(true,'/asignaciones?dia='.$dia);
+                }
                  
-                $alumno->guardar(true,'/asignaciones');
               
             }
            
 
             $router->render('alumnos/alumno',[
                 'alumno'=>$alumno,
-                'canciones'=>$canciones
+                'canciones'=>$canciones,
+                'dia'=>$dia,
+                'mensaje' => $mensaje
             ]);
             
-        }
+        }/*
         public static function AgregarCancion(Router $router){
             //TODO agregar canciones con method post
+            $alumnoId=$_GET['alumno_id'];
+            $horario=$_GET['horario'];
+            $dia = $_GET['dia']; 
             if($_SERVER['REQUEST_METHOD']==='POST'){
                 $cancion=new Canciones($_POST['cancion']);
-                $cancion->guardar(true,);
+                $cancion->guardar(true, '/alumnos/alumno?alumno_id=' . $alumnoId .'&horario='. $horario .  '&dia=' .$dia  );
             }
-            $alumnoId=$_GET['alumno_id'];
             $alumno =Alumnos::findByColumn('id', $alumnoId);
             $router->render('alumnos/canciones',[
-                'alumnoNombre'=>$alumno
+                'alumnoNombre'=>$alumno, 
+                'horario'=>$horario, 
+                'dia'=>$dia
+            ]);
+        }*/
+        public static function AgregarCancion(Router $router) {
+            $alumnoId = $_GET['alumno_id'];
+            $horario = $_GET['horario'];
+            $dia = $_GET['dia'];
+            $mensaje = '';
+            
+            
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+
+                $tituloCancion = trim($_POST['cancion']['titulo']);
+               // debugear($tituloCancion);
+                if (!empty($tituloCancion)) {
+                    // Sanitizar el título de la canción
+                    $tituloCancion = htmlspecialchars($tituloCancion, ENT_QUOTES, 'UTF-8');
+                    $cancion = new Canciones();
+                    $cancion->titulo=$tituloCancion;  // Asignar el título sanitizado
+                    $cancion->alumno_id=$alumnoId;  // Asignar el título sanitizado
+                    $cancion->guardar(true, '/alumnos/alumno?alumno_id=' . $alumnoId . '&horario=' . $horario . '&dia=' . $dia);
+                } else {
+                    $mensaje = 'El campo de la canción no puede estar vacío.';
+                }
+            }
+            
+            $alumno = Alumnos::findByColumn('id', $alumnoId);
+            
+            $router->render('alumnos/canciones', [
+                'alumnoNombre' => $alumno,
+                'horario' => $horario,
+                'dia' => $dia,
+                'mensaje' => $mensaje
             ]);
         }
+        
         public static function AgregarAlumno(Router $router){
             $alumno=new Alumnos();
+            $dia = $_GET['dia']; 
+            $mensaje='';
             if($_SERVER['REQUEST_METHOD']==='POST'){
                 // tomar value de nombre y comentario
                 
-                $alumno=new Alumnos($_POST['alumno']);
-                $alumno->guardar(false);
-              
-                // obtener id de alumno agregado/mas dia y horario 
-                $alumno=Alumnos::findByColumn('nombre',$alumno->nombre);
+                    $alumno=new Alumnos($_POST['alumno']);
+                    $alumno->nombre=trim($_POST['alumno']['nombre']);
+                    if(empty( $alumno->nombre)){
+                        $mensaje="nombre esta vacio";
+                    }else{
+                        $alumno->guardar(false);
+                        $alumno=Alumnos::findByColumn('nombre',$alumno->nombre);
+
+                        // obtener id de alumno agregado/mas dia y horario 
+                        
+                        $horario=$_GET['horario'];
+                        $dia_semana=$_GET['dia'];
+                        // enviar datos [dia,horario,alumnoID] a la tabla asignaciones
+                            $asignacion=new Asignaciones();
+                            $asignacion->dia_semana=$dia_semana;
+                            $asignacion->horario=$horario;
+                            $asignacion->alumno_id=$alumno[0]->id;
+                            //debugear($asignacion->alumno_id);
+                        $asignacion->guardar(true,'/asignaciones?dia='.$dia);
+                    }
+                }
                  
-                $horario=$_GET['horario'];
-                $dia_semana=$_GET['dia'];
-                // enviar datos [dia,horario,alumnoID] a la tabla asignaciones
-                    $asignacion=new Asignaciones();
-                    $asignacion->dia_semana=$dia_semana;
-                    $asignacion->horario=$horario;
-                    $asignacion->alumno_id=$alumno[0]->id;
-                    //debugear($asignacion->alumno_id);
-                $asignacion->guardar(true);
-            }
+              
             $router->render('alumnos/crear',[
-                'alumno'=>$alumno
+                'alumno'=>$alumno,
+                'dia'=>$dia,
+                'mensaje'=>$mensaje
             ]);
         }
-        public static function ModificarAlumno(Router $router){
-            //TODO edit nombre y comentario con method post
-            //TODO obtener values
-            
-            //TODO enviar a la base
-           
-        }
+        
         public static function borrarAlumno(Router $router){
             //TODO obtener alumno Id
+            $dia=$_GET['dia'];
             if($_SERVER['REQUEST_METHOD']==='POST'):
                 $alumnoId=$_GET['alumno_id'];
-                    
                 $canciones=Canciones::findByColumn('alumno_id',$alumnoId);
-                for($i=0;$i<=count($canciones);$i++){
+                if(count($canciones)){
+                    debugear($canciones,false );
 
-                    $canciones[$i]->eliminar(false);
-                }
+                    for($i=0;$i<count($canciones);$i++){
+                        
+                        $canciones[$i]->eliminar(false);
+                    }
+                }   
                 
                 $asignacion=Asignaciones::findByColumn('alumno_id',$alumnoId);
                 $asignacion[0]->eliminar(false);
@@ -94,10 +149,12 @@ use MVC\Router;//maneja tabla alumnos y canciones
 
 
                 $alumno =Alumnos::findByColumn('id', $alumnoId);
-                $alumno[0]->eliminar();
+                $alumno[0]->eliminar(true,'/asignaciones?dia=' . $dia);
             endif;
              
-           $router->render('alumnos/borrarAlumno',[]);
+           $router->render('alumnos/borrarAlumno',[
+            'dia'=>$dia
+           ]);
         }
     }
     ?>

@@ -1,0 +1,14 @@
+.borrarAlumno{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &{
+        div{
+            align-items: center;
+        }
+        button{
+            padding: 1rem;
+        }
+    }
+}

@@ -15,6 +15,11 @@
                     <button type="submit" class="boton-azul">+</button>
                     <textarea name="cancion[alumno_id]" hidden><?php echo $id?></textarea>
                 </div>
+                <?php if (!empty($mensaje)): ?>
+                    <div class=" contenedor mensaje-error">
+                        <p> <?php echo $mensaje; ?></p>
+                    </div>
+                <?php endif; ?>
             </form>
         </div>
 </main>

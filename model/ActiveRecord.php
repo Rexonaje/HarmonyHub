@@ -47,7 +47,7 @@
             if($return){
                 //redireccionar al user para evitar entradas duplicadas
 
-                header('location:'.$link .'?resultado=1'); 
+                header('location:'.$link  ); 
             }
             }
     }
@@ -67,7 +67,7 @@
         if($resultado){
             if($return):
             //redireccionar al user para evitar entradas duplicadas
-            header('location: '. $link .'?resultado=2');
+            header('location: '. $link );
             endif; 
           }
     }
@@ -79,7 +79,7 @@
         }
       return $atributos;
     }
-    public function eliminar($return=true){
+    public function eliminar($return=true,$link='/asignaciones'){
         $query="DELETE FROM ". static::$tabla . " WHERE id= ". self::$db->escape_string($this->id) . " LIMIT 1";
        
         $resultado=self::$db->query($query);
@@ -87,16 +87,22 @@
             if($return):
             //redireccionar al user para evitar entradas duplicadas
            /* $this->borrarImagen();*/
-                header('location: /asignaciones?resultado=3'); 
+                header('location: ' . $link ); 
             endif;
         }
     }
     public function sanitizado(){
         $atributos=$this->atributos();
         $sanitizado=[];
-        foreach($atributos as $key =>$value){
-           $sanitizado[$key]=self::$db->escape_string($value);
+         
+    foreach($atributos as $key => $value) {
+        if ($value === null) {
+            $sanitizado[$key] = '';  
+        } else {
+            $sanitizado[$key] = self::$db->escape_string($value); 
         }
+    }
+
         return $sanitizado;
     }
    /* public function setImage($image){

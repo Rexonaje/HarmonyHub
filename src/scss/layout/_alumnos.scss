@@ -25,13 +25,13 @@
     text-align: left;
     color:$gris;
 
-    margin: 0 10% ;
+    margin: 0 5% ;
     //font-weight: 500;
-    width: 100rem;
+    width: 90%;
     height: 30rem;
     @include tablet{
         font-size: 3rem;
-        width: 32rem;
+        //width: 22rem;
         height: 40rem;
     }
 }
