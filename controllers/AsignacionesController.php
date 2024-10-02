@@ -42,9 +42,6 @@ class AsignacionesController {
         ]);
     }
 
-    public static function login(Router $router ){
-        $router->render('login',[]);
-    }
-    
+   
     
 }

@@ -1,3 +1,14 @@
+<?php 
+if(!isset($_SESSION)){
+    session_start();
+}
+    
+    $auth=$_SESSION['login']??false;
+   // var_dump($auth);
+   if(!isset($inicio)){
+    $inicio=false;
+   }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +20,27 @@
 <body>
     <header>
         <div>
-        <a href="/"><h1>HarmonyHub: </h1></a>
+            <?php if(!$auth):?> 
+                <a href="/"><h1>HarmonyHub: </h1></a>
+            <?php endif; ?>
+            <?php if($auth):?> 
+                <a href="/asignaciones"><h1>HarmonyHub: </h1></a>
+            <?php endif; ?>
             <h2 class="subtitulo">Gestión Musical de Alumnos </h2>
         </div>
+        <nav>
+        <?php if($auth):?>
+                <a href="/logout">Cerrar Sesion</a>
+        <?php endif; ?>
+        <?php 
+               /* if(!$auth):?>
+                    <a href="/login">Iniciar Sesion</a>
+                <?php endif;*/ 
+        ?>
+        </nav>
         <p  class="dark-mode-btn">
             <?php @includirTemplate('darkModeButton');  ?>
-</p>
+        </p>
     </header>
     <?php echo $contenido; ?>  
     <script src="../build/js/bundle.min.js"></script> 

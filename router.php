@@ -15,7 +15,7 @@ class Router{
             $auth=$_SESSION['login']?? null;
 
             //arreglo de rutas protegidas
-            $rutas_protegidas=[];
+            $rutas_protegidas=['/asignaciones','/alumnos/alumno','/alumno/borrarAlumno','/alumno/canciones','/alumnos/crear','/auth/userCreator'];
 
             $urlActual=strtok($_SERVER['REQUEST_URI'],'?')?? '/' ; 
             $metodo=$_SERVER['REQUEST_METHOD'];
